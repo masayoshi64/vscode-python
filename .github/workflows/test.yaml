@@ -1,0 +1,19 @@
+name: Test with pytest 
+# workflow triggered by any push on any branch
+on: [push]
+jobs:
+  build:
+    name: Pytest
+    # runs on the latest Ubuntu
+    runs-on: ubuntu-latest 
+    # runs within your Docker container
+    container:
+      image: python:3.7
+    # checkout your code from your repository
+    # and runs pytest
+    steps:
+    - uses: actions/checkout@v2
+    - name: install packages
+      run: pip install -r requirements.txt
+    - name: Test with pytest
+      run: pytest tests
